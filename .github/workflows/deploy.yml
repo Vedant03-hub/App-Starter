@@ -1,0 +1,21 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package
+        run: tar czf app.tar.gz -C ./my-app .
+      - name: Deploy
+        run: |
+          curl -X POST \
+            https://domainindia.com/mcp \
+            -H "Authorization: Bearer ${{ secrets.COLOSOFT_DEPLOY_TOKEN }}" \
+            -H "Content-Type: application/gzip" \
+            --data-binary @app.tar.gz
