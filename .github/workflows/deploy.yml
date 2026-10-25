@@ -14,7 +14,7 @@ jobs:
         run: tar czf app.tar.gz -C ./my-app .
       - name: Deploy
         run: |
-          curl --fail-with-body -X POST \
+          curl -X POST \
             https://deploy.colosoft.com/deploy/dom-app-starter-ac9e6c \
             -H "Authorization: Bearer ${{ secrets.COLOSOFT_DEPLOY_TOKEN }}" \
             -H "Content-Type: application/gzip" \
