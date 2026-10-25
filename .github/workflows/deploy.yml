@@ -15,7 +15,7 @@ jobs:
       - name: Deploy
         run: |
           curl -X POST \
-            https://deploy.colosoft.com/deploy/dom-app-starter-ac9e6c \
+            https://domainindia.com/mcp \
             -H "Authorization: Bearer ${{ secrets.COLOSOFT_DEPLOY_TOKEN }}" \
             -H "Content-Type: application/gzip" \
             --data-binary @app.tar.gz
