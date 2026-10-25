@@ -11,11 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Package
-        run: tar czf app.tar.gz --exclude=.git -C . .
+        run: tar czf app.tar.gz -C ./my-app .
       - name: Deploy
         run: |
           curl --fail-with-body -X POST \
             https://deploy.colosoft.com/deploy/dom-app-starter-ac9e6c \
-            -H "Authorization: ${{ secrets.COLOSOFT_DEPLOY_TOKEN }}" \
+            -H "Authorization: Bearer ${{ secrets.COLOSOFT_DEPLOY_TOKEN }}" \
             -H "Content-Type: application/gzip" \
             --data-binary @app.tar.gz
